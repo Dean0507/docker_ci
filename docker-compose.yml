@@ -1,0 +1,26 @@
+version: "3"
+services:
+  react:
+    build: 
+      context: .   #이미지를 만들 파일이 있는 곳
+      dockerfile: Dockerfile.dev   # 이미지를 만들 도커파일을 일반 도커파일이 아닌 특정 도커파일을 설정 할때
+    ports:
+     - "3000:3000"
+    volumes:
+     - /usr/src/app/node_modules  #무시해야할 볼륨 설정
+     - ./:/usr/src/app #현재 파일 전부를 : 도커내에 이곳에서 참조한다
+    environment: 
+      - CHOKIDAR_USEPOLLING=true #리액트 핫 리로딩 적용, 윈도우 터미널에서만 필요함, 볼륨 실시간 반영을 위함
+    stdin_open: true    
+  tests:  
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /usr/src/app/node_modules
+      - ./:/usr/src/app
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
+    command: ["npm", "run", "test"]
+      
+    # 테스트를 해주는 컨테이너를 하나 더 추가한다, 테스트 쪽을 변경하자마자 실시간으로 결과로 반영되는 환경을 만들기 위해
