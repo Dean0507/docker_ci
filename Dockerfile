@@ -17,3 +17,4 @@ COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 # /usr/src/app/build 에서 nginx의 /usr/share/nginx/html 이곳으로 복사한다
 
 #Nginx는 80번이 기본 포트이므로 docker run -p 8080:80 deankim0507
+#
