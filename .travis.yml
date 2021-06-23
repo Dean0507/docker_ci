@@ -15,7 +15,6 @@ script:
 #성공한후 할 행동
 after_success:
   - echo "Test Success"
-
 # deploy:
 #   edge: true
 #   provider: elasticbeanstalk
