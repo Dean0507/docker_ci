@@ -15,15 +15,22 @@ script:
 #성공한후 할 행동
 after_success:
   - echo "Test Success"
-# deploy:
-#   edge: true
-#   provider: elasticbeanstalk
-#   region: ap-northeast-2
-#   app: docker-react-app
-#   env: DockerReactApp-env
-#   bucket_name: elasticbeanstalk-ap-northeast-2-972153559337
-#   bucket_path: docker-react-app
-#   on:
-#     branch: master
-#   access_key_id: $AWS_ACCESS_KEY
-#   secret_access_key: $AWS_SECRET_ACCESS_KEY
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk    
+  region: ca-central-1
+  app: dean_portfolio
+  env: DockerReactApp-env
+  bucket_name: elasticbeanstalk-ca-central-1-522443927346
+  bucket_path: dean_portfolio
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+# provider - 외부서비스 이름 표시(오타조심), region - 현재 사용하고있는 aws의 서비스가 위치하고있는 물리적장소
+# env - 환경 이름 설정안하면 자동설정됨
+# bucket_name: 버켓하나 자동으로 만들어짐, bucket_path: 어플리케이션 이름과 동일
+# branch : 어떤 브랜치에 push 할때 aws에 배포할것인지
+#AWS에서 IAM USER 만들어서 Elastic beanstalk 풀 권한 준다음 그 iam user의 accesskey 와 secretkey 받은후
+#TRAVIS CI환경변수에서 ACCESS KEY 와 SECRET KEY를 등록하고
