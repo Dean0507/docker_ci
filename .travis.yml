@@ -15,13 +15,13 @@ script:
 #성공한후 할 행동
 after_success:
   - echo "Test Success"
-
+# aws beanstalk 에서 만들어어서 입력하는곳
 deploy:
   edge: true
   provider: elasticbeanstalk    
   region: ca-central-1
   app: dean_portfolio
-  env: DockerReactApp-env
+  env: Deanportfolio-env
   bucket_name: elasticbeanstalk-ca-central-1-522443927346
   bucket_path: dean_portfolio
   on:
